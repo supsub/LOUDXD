@@ -6,27 +6,6 @@ class Lexer():
         self.lexer = LexerGenerator()
 
     def _add_tokens(self):
-        
-        #Bigger >
-        self.lexer.add('BIGGER', r'>')
-        
-        #Smaller <
-        self.lexer.add('SMALLER', r'<')
-        
-        #Equal ==
-        self.lexer.add('EQUAL', r'==')
-        
-        #Not Equal !=
-        self.lexer.add('NOT_EQUAL', r'!=')
-        
-        #For
-        self.lexer.add('FOR', r'for')
-        
-        #If
-        self.lexer.add('IF', r'if')
-        
-        
-        
         # Print
         self.lexer.add('PRINT', r'print')
         # Parenthesis

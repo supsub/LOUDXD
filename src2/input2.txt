@@ -1,0 +1,6 @@
+Zmienna a jest równa 2.
+Zwiększ a o 5.
+Wypisz na ekranie a.
+Zmienna b jest równa 4+a-(2-a).
+Zmniejsz b o b+1.
+Wypisz na ekranie b+b.

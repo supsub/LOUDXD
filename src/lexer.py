@@ -19,7 +19,7 @@ class Lexer():
         # Number
         self.lexer.add('NUMBER', r'\d+')
 
-        self.lexer.add('IDENTIFIER', r'(_|[a-zA-Z])(_|[a-zA-Z]|[0-1])*')
+        self.lexer.add('IDENTIFIER', r'(_|[a-zA-Z])(_|[a-zA-Z]|[0-9])*')
 
         self.lexer.add('EQUALS', r'\=')
         # Ignore spaces

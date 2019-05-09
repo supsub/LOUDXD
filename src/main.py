@@ -1,6 +1,9 @@
 from src.lexer import Lexer
 from src.parser import Parser
 
+class ParserState(object):
+    def __init__(self, filename):
+        self.filename = filename
 
 
 text_input = ""
@@ -16,4 +19,7 @@ tokens = lexer.lex(text_input)
 pg = Parser()
 pg.parse()
 parser = pg.get_parser()
-parser.parse(tokens).eval({})
+context = {}
+parser.parse(tokens).eval(context)
+
+#print("\nContext: ",context)

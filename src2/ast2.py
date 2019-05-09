@@ -1,3 +1,6 @@
+from src2.exceptions2 import *
+import more_itertools
+
 class Number():
     def __init__(self, value):
         self.value = value
@@ -48,18 +51,36 @@ class Identifier():
     def __init__(self,id):
         self.id = id
     def eval(self,context):
-        return context[self.id]
+        if self.id.value not in context.keys():
+            raise ZlyKlucz(self.id)
+        return context[self.id.value]
 
 class Increment():
     def __init__(self,identifier,value):
         self.identifier = identifier
         self.value = value
     def eval(self,context):
-        context[self.identifier] += self.value.eval(context)
+        if self.identifier.value not in context.keys():
+            raise ZlyKlucz(self.identifier)
+        context[self.identifier.value] += self.value.eval(context)
+
 
 class Decrement():
     def __init__(self,identifier,value):
         self.identifier = identifier
         self.value = value
     def eval(self,context):
-        context[self.identifier] -= self.value.eval(context)
+        if self.identifier.value not in context.keys():
+            raise ZlyKlucz(self.identifier)
+        context[self.identifier.value] -= self.value.eval(context)
+
+class String():
+    def __init__(self,value, var=None):
+        self.value = value[1:-1]
+        self.var = var
+    def eval(self,context):
+        if self.var is not None:
+            self.var =  list(more_itertools.collapse(self.var))
+            self.var = [var.eval(context) for var in self.var]
+            return self.value.replace("_","{}").format(*self.var)
+        return self.value

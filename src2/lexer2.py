@@ -8,6 +8,7 @@ class Lexer():
     def _add_tokens(self):
         # Print
         self.lexer.add('PRINT', r'Wypisz na ekranie')
+        self.lexer.add("FORMAT", r'\w puste miejsce wpisz ')
         # Parenthesis
         self.lexer.add('OPEN_PAREN', r'\(')
         self.lexer.add('CLOSE_PAREN', r'\)')
@@ -30,6 +31,11 @@ class Lexer():
         self.lexer.add('EQUALS', r'jest równa')
 
         self.lexer.add('IDENTIFIER', r'(_|[a-zA-Z])(_|[a-zA-Z]|[0-9])*')
+
+        self.lexer.add("STRING", r'\"[^\"]*\"')
+
+        self.lexer.add("COMMA", r'\,')
+
 
 
         # Ignore spaces

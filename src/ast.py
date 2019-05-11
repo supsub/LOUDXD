@@ -83,6 +83,15 @@ class Decrement():
         if self.identifier.value not in context.keys():
             raise ZlyKlucz(self.identifier)
         context[self.identifier.value] -= self.value.eval(context)
+        
+class IfStatement():
+    def __init__(self, boolean, body):
+        self.boolean = boolean
+        self.body = body
+    def eval(self, context):
+        if self.boolean.eval(context):
+            self.body.eval(context)
+        
 
 class String():
     def __init__(self,value, var=None):

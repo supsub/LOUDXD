@@ -40,6 +40,7 @@ class Lexer():
         ###
         #if
         ###
+        self.lexer.add('IF', r'Jeżeli')
         
         ###
         #for

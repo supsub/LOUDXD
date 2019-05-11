@@ -13,7 +13,10 @@ def test_test():
                 Wypisz na ekranie "ELO :P".
                 Wypisz na ekranie "Wpisałem w puste miejsca  _, _, _!", w puste miejsce wpisz "siema",1,(2-5).
                 Wypisz na ekranie "Wpisałem w puste miejsce _, _!", w puste miejsce wpisz "elo", "siemano".
-                Wypisz na ekranie "zmienna a = _, zmienna b = _, zmienna c = _!", w puste miejsce wpisz a,b,c."""
+                Wypisz na ekranie "zmienna a = _, zmienna b = _, zmienna c = _!", w puste miejsce wpisz a,b,c.
+                Wypisz na ekranie b jest wieksze od b.
+                Wypisz na ekranie b jest mniejsze od b.
+                """
 
     lexer = Lexer().get_lexer()
     tokens = lexer.lex(source)

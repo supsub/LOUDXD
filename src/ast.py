@@ -20,7 +20,16 @@ class Sum(BinaryOp):
 
 class Sub(BinaryOp):
     def eval(self,context):
-        return self.left.eval(context) - self.right.eval(context)
+        return self.left.eval(context)-self.right.eval(context)
+
+class Bigger(BinaryOp):
+    def eval(self,context):
+        return (self.left.eval(context)) > (self.right.eval(context))
+    
+class Smaller(BinaryOp):
+    def eval(self,context):
+        return (self.left.eval(context)) < (self.right.eval(context))
+    
 
 class Print():
     def __init__(self, value):

@@ -19,9 +19,9 @@ class Lexer():
         self.lexer.add('SUB', r'\-')
         # Number
         self.lexer.add('NUMBER', r'\d+')
-        # ++
+        # 
         self.lexer.add('INCREMENT', r'Zwiększ')
-        # --
+        # 
         self.lexer.add('DECREMENT', r'Zmniejsz')
         # +,- operations helper 
         self.lexer.add('ADDSUB_HELPER', r'o')
@@ -29,7 +29,14 @@ class Lexer():
         self.lexer.add('DIVMUL_HELPER', r'przez')
         # assignment
         self.lexer.add('ASSIGN', r'jest równe')
-        
+        #bigger >
+        self.lexer.add('BIGGER', r'jest wieksze od')
+        #smaller <
+        self.lexer.add('SMALLER', r'jest mniejsze od')
+        #equal ==
+        self.lexer.add('EQUAL', r'równa się')
+        #!= differ
+        self.lexer.add('DIFFER', r'jest różne od')
         #variable name, ex. response_time or latencySegID  
         self.lexer.add('VARIABLE', r'(_|[a-zA-Z])(_|[a-zA-Z]|[0-9])*')
 
@@ -40,14 +47,7 @@ class Lexer():
         ###
         #comparisons
         ###
-        #bigger >
-        self.lexer.add('BIGGER', r'jest większe')
-        #smaller <
-        self.lexer.add('SAMLLLER', r'jest mniejsze')
-        #equal ==
-        self.lexer.add('EQUAL', r'równa się')
-        #!= differ
-        self.lexer.add('DIFFER', r'jest różne od')
+        
         
         ###
         #if

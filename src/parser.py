@@ -8,9 +8,8 @@ class Parser():
             # A list of all token names accepted by the parser.
             ['NUMBER', 'PRINT', 'OPEN_PAREN', 'CLOSE_PAREN',
              'DOT', 'SUM', 'SUB','VARIABLE', 'ASSIGN', 'INCREMENT', 'DECREMENT',
-             'STRING', 'COMMA','FORMAT',
-            #polish keywords
-            'ADDSUB_HELPER'
+             'STRING', 'COMMA','FORMAT', 'ADDSUB_HELPER', 'BIGGER', 'SMALLER',
+             #  'EQUAL', 'DIFFER'
              ],
             precedence=[
                 ('left', ['SUM', 'SUB']),
@@ -68,12 +67,18 @@ class Parser():
 
         @self.pg.production('expression : expression SUM expression')
         @self.pg.production('expression : expression SUB expression')
+        @self.pg.production('expression : expression BIGGER expression')
+        @self.pg.production('expression : expression SMALLER expression')
         def expression(p):
             left = p[0]
             right = p[2]
             operator = p[1]
             if operator.gettokentype() == 'SUM':
                 return Sum(left, right)
+            if operator.gettokentype() == 'BIGGER':
+                return Bigger(left, right)
+            if operator.gettokentype() == 'SMALLER':
+                return Smaller(left, right)
             elif operator.gettokentype() == 'SUB':
                 return Sub(left, right)
 
@@ -94,8 +99,6 @@ class Parser():
         @self.pg.production('expression : STRING')
         def expression_to_string(p):
             return String(p[0].value)
-
-
 
 
         @self.pg.error

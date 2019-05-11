@@ -7,10 +7,10 @@ class Parser():
         self.pg = ParserGenerator(
             # A list of all token names accepted by the parser.
             ['NUMBER', 'PRINT', 'OPEN_PAREN', 'CLOSE_PAREN',
-             'DOT', 'SUM', 'SUB','IDENTIFIER', 'EQUALS', 'INCREMENT', 'DECREMENT',
+             'DOT', 'SUM', 'SUB','VARIABLE', 'ASSIGN', 'INCREMENT', 'DECREMENT',
              'STRING', 'COMMA','FORMAT',
             #polish keywords
-            'ZMIENNA','O'
+            'ADDSUB_HELPER'
              ],
             precedence=[
                 ('left', ['SUM', 'SUB']),
@@ -42,15 +42,15 @@ class Parser():
 
 
 
-        @self.pg.production('assignment_statement : ZMIENNA IDENTIFIER EQUALS expression')
+        @self.pg.production('assignment_statement : VARIABLE ASSIGN expression')
         def assignment_statement(p):
-            return Assignment(Identifier(p[1].value),p[3])
+            return Assignment(Identifier(p[0].value),p[2])
 
-        @self.pg.production('increment_statement : INCREMENT IDENTIFIER O expression')
+        @self.pg.production('increment_statement : INCREMENT VARIABLE ADDSUB_HELPER expression')
         def increment_statement(p):
             return Increment(p[1],p[3])
 
-        @self.pg.production('decrement_statement : DECREMENT IDENTIFIER O expression')
+        @self.pg.production('decrement_statement : DECREMENT VARIABLE ADDSUB_HELPER expression')
         def decrement_statement(p):
             return Decrement(p[1], p[3])
 
@@ -86,7 +86,7 @@ class Parser():
         def number(p):
             return Number(p[0].value)
 
-        @self.pg.production('expression : IDENTIFIER')
+        @self.pg.production('expression : VARIABLE')
         def identifier(p):
             return Identifier(p[0])
 
@@ -102,7 +102,7 @@ class Parser():
         def error_handle(token):
             line = token.getsourcepos().lineno
             column = token.getsourcepos().colno
-            raise SyntaxError(f"Bład składniowy w linijce nr {line}, kolumnie nr {column}")
+            raise SyntaxError("Bład składniowy w linijce nr {}, kolumnie nr {}".format(line,column))
 
     def get_parser(self):
         return self.pg.build()

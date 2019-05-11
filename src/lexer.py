@@ -34,7 +34,7 @@ class Lexer():
          # * /
         self.lexer.add('DIVMUL_HELPER', r'przez')
         # assignment 
-        self.lexer.add('ASSIGN', r'jest równa')
+        self.lexer.add('ASSIGN', r'jest równe')
         # string
         self.lexer.add("STRING", r'\"[^\"]*\"')
         

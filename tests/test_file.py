@@ -16,6 +16,8 @@ def test_test():
                 Wypisz na ekranie "zmienna a = _, zmienna b = _, zmienna c = _!", w puste miejsce wpisz a,b,c.
                 Wypisz na ekranie b jest wieksze od b.
                 Wypisz na ekranie b jest mniejsze od b.
+                Wypisz na ekranie b równa się b.
+                Wypisz na ekranie b jest różne od b.
                 """
 
     lexer = Lexer().get_lexer()

@@ -8,8 +8,7 @@ class Parser():
             # A list of all token names accepted by the parser.
             ['NUMBER', 'PRINT', 'OPEN_PAREN', 'CLOSE_PAREN',
              'DOT', 'SUM', 'SUB','VARIABLE', 'ASSIGN', 'INCREMENT', 'DECREMENT',
-             'STRING', 'COMMA','FORMAT', 'ADDSUB_HELPER', 'BIGGER', 'SMALLER',
-             #  'EQUAL', 'DIFFER'
+             'STRING', 'COMMA','FORMAT', 'ADDSUB_HELPER', 'BIGGER', 'SMALLER', 'EQUAL', 'DIFFER'
              ],
             precedence=[
                 ('left', ['SUM', 'SUB']),
@@ -69,6 +68,8 @@ class Parser():
         @self.pg.production('expression : expression SUB expression')
         @self.pg.production('expression : expression BIGGER expression')
         @self.pg.production('expression : expression SMALLER expression')
+        @self.pg.production('expression : expression EQUAL expression')
+        @self.pg.production('expression : expression DIFFER expression')
         def expression(p):
             left = p[0]
             right = p[2]
@@ -78,6 +79,10 @@ class Parser():
             if operator.gettokentype() == 'BIGGER':
                 return Bigger(left, right)
             if operator.gettokentype() == 'SMALLER':
+                return Smaller(left, right)
+            if operator.gettokentype() == 'EQUAL':
+                return Smaller(left, right)
+            if operator.gettokentype() == 'DIFFER':
                 return Smaller(left, right)
             elif operator.gettokentype() == 'SUB':
                 return Sub(left, right)

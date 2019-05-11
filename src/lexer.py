@@ -37,18 +37,6 @@ class Lexer():
         self.lexer.add('EQUAL', r'równa się')
         #!= differ
         self.lexer.add('DIFFER', r'jest różne od')
-        #variable name, ex. response_time or latencySegID  
-        self.lexer.add('VARIABLE', r'(_|[a-zA-Z])(_|[a-zA-Z]|[0-9])*')
-
-        self.lexer.add("STRING", r'\"[^\"]*\"')
-
-        self.lexer.add("COMMA", r'\,')
-        
-        ###
-        #comparisons
-        ###
-        
-        
         ###
         #if
         ###
@@ -56,8 +44,13 @@ class Lexer():
         ###
         #for
         ###
+            
+        #variable name, ex. response_time or latencySegID  
+        self.lexer.add('VARIABLE', r'(_|[a-zA-Z])(_|[a-zA-Z]|[0-9])*')
 
+        self.lexer.add("STRING", r'\"[^\"]*\"')
 
+        self.lexer.add("COMMA", r'\,')
 
         # Ignore spaces
         self.lexer.ignore('\s+')

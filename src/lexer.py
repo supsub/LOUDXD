@@ -42,13 +42,13 @@ class Lexer():
         #comparisons
         ###
         #bigger >
-        self.lexer.add('BIGGER', r'jest większe')
-        #smaller <
-        self.lexer.add('SAMLLLER', r'jest mniejsze')
-        #equal ==
-        self.lexer.add('EQUAL', r'równa się')
-        #!= differ
-        self.lexer.add('DIFFER', r'jest różne od')
+        # self.lexer.add('BIGGER', r'jest większe')
+        # #smaller <
+        # self.lexer.add('SAMLLLER', r'jest mniejsze')
+        # #equal ==
+        # self.lexer.add('EQUAL', r'równa się')
+        # #!= differ
+        # self.lexer.add('DIFFER', r'jest różne od')
         
         ###
         #if

@@ -44,7 +44,7 @@ class Parser():
 
         @self.pg.production('assignment_statement : VARIABLE ASSIGN expression')
         def assignment_statement(p):
-            return Assignment(Identifier(p[1].value),p[3])
+            return Assignment(Identifier(p[0].value),p[2])
 
         @self.pg.production('increment_statement : INCREMENT VARIABLE ADDSUB_HELPER expression')
         def increment_statement(p):

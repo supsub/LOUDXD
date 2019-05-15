@@ -12,6 +12,14 @@ class Lexer():
         # Parenthesis
         self.lexer.add('OPEN_PAREN', r'\(')
         self.lexer.add('CLOSE_PAREN', r'\)')
+        ###
+        #if
+        ###
+        self.lexer.add('IF', r'Jeżeli')        
+        self.lexer.add('ADD_BLOCK_STATEMENT', r'oraz')        
+        ###
+        #for
+        ###
         # Semi Colon
         self.lexer.add('DOT', r'\.')
         # Operators +,-
@@ -37,14 +45,6 @@ class Lexer():
         self.lexer.add('EQUAL', r'równa się')
         #!= differ
         self.lexer.add('DIFFER', r'jest różne od')
-        ###
-        #if
-        ###
-        self.lexer.add('IF', r'Jeżeli')
-        
-        ###
-        #for
-        ###
             
         #variable name, ex. response_time or latencySegID  
         self.lexer.add('VARIABLE', r'(_|[a-zA-Z])(_|[a-zA-Z]|[0-9])*')

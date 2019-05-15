@@ -25,11 +25,13 @@ class Parser():
         @self.pg.production('statements : statement DOT')
         def statements_end(p):
             return Statement(p[0])
+        
 
         @self.pg.production('statement : print_statement')
         @self.pg.production('statement : assignment_statement')
         @self.pg.production('statement : increment_statement')
         @self.pg.production('statement : decrement_statement')
+        @self.pg.production('statement : if_statement')
         def statement(p):
             return p[0]
 
@@ -42,19 +44,26 @@ class Parser():
         @self.pg.production('assignment_statement : VARIABLE ASSIGN expression')
         def assignment_statement(p):
             return Assignment(Identifier(p[0].value),p[2])
-        
-        @self.pg.production('assignment_statement : IF expression COMMA statement')
-        def assignment_statement(p):
+        ###
+        #IF STATEMENT
+        ###
+        @self.pg.production('if_statement : IF expression COMMA statement')
+        def if_statement(p):
             return IfStatement(p[1], Statement(p[3]))
-
+        
+        
+        
+        #INCREMENT
         @self.pg.production('increment_statement : INCREMENT VARIABLE ADDSUB_HELPER expression')
         def increment_statement(p):
             return Increment(p[1],p[3])
 
+        #DECREMENT
         @self.pg.production('decrement_statement : DECREMENT VARIABLE ADDSUB_HELPER expression')
         def decrement_statement(p):
             return Decrement(p[1], p[3])
 
+        #STRING FORMATTING
         @self.pg.production('string : STRING COMMA FORMAT expressions')
         def string_formatted(p):
             return String(p[0].value, p[3])
@@ -84,9 +93,9 @@ class Parser():
             if operator.gettokentype() == 'SMALLER':
                 return Smaller(left, right)
             if operator.gettokentype() == 'EQUAL':
-                return Smaller(left, right)
+                return Equal(left, right)
             if operator.gettokentype() == 'DIFFER':
-                return Smaller(left, right)
+                return NtEqual(left, right)
             elif operator.gettokentype() == 'SUB':
                 return Sub(left, right)
 

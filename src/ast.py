@@ -30,6 +30,14 @@ class Smaller(BinaryOp):
     def eval(self,context):
         return (self.left.eval(context)) < (self.right.eval(context))
     
+class Equal(BinaryOp):
+    def eval(self,context):
+        return (self.left.eval(context)) == (self.right.eval(context))
+    
+class NtEqual(BinaryOp):
+    def eval(self,context):
+        return (self.left.eval(context)) != (self.right.eval(context))
+    
 
 class Print():
     def __init__(self, value):
@@ -91,7 +99,6 @@ class IfStatement():
     def eval(self, context):
         if self.boolean.eval(context):
             self.body.eval(context)
-        
 
 class String():
     def __init__(self,value, var=None):

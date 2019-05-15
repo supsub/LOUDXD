@@ -16,7 +16,7 @@ class Lexer():
         #if
         ###
         self.lexer.add('IF', r'Jeżeli')        
-        self.lexer.add('ADD_BLOCK_STATEMENT', r'oraz')        
+        self.lexer.add('START_BLOCK', r'wykonaj')       
         ###
         #for
         ###

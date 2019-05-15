@@ -10,7 +10,7 @@ class Parser():
              'DOT', 'SUM', 'SUB','VARIABLE', 'ASSIGN', 'INCREMENT', 'DECREMENT',
              'STRING', 'COMMA','FORMAT', 'ADDSUB_HELPER',
              'BIGGER', 'SMALLER', 'EQUAL', 'DIFFER',
-             'IF', 'ADD_BLOCK_STATEMENT'
+             'IF', 'START_BLOCK'
              ],
             precedence=[
                 ('left', ['SUM', 'SUB']),
@@ -50,13 +50,13 @@ class Parser():
         ###
         #IF STATEMENT
         ###
-        @self.pg.production('if_statement : IF expression COMMA statement')
+        @self.pg.production('if_statement : IF expression COMMA START_BLOCK statement')
         def if_statement(p):
-            return IfStatement(p[1], Statements(p[3],[]))
+            return IfStatement(p[1], Statement(p[4]))
         
-        @self.pg.production('if_statement : IF expression COMMA statement ADD_BLOCK_STATEMENT statement')
-        def if_statement(p):
-            return IfStatement(p[1], Statements(p[3],[]))
+        # @self.pg.production('if_statement : IF expression COMMA statement ADD_BLOCK_STATEMENT statement')
+        # def if_statement(p):
+        #     return IfStatement(p[1], Statements(p[3],[]))
         
         
         

@@ -19,6 +19,7 @@ def test_test():
                 Wypisz na ekranie b równa się b.
                 Wypisz na ekranie b jest różne od b.
                 Jeżeli b jest mniejsze od b, Wypisz na ekranie "1statement if".
+                Jeżeli b jest mniejsze od b, Wypisz na ekranie "1statement if" oraz Wypisz na ekranie "1statement if".
                 """
 
     lexer = Lexer().get_lexer()

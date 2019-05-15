@@ -8,7 +8,9 @@ class Parser():
             # A list of all token names accepted by the parser.
             ['NUMBER', 'PRINT', 'OPEN_PAREN', 'CLOSE_PAREN',
              'DOT', 'SUM', 'SUB','VARIABLE', 'ASSIGN', 'INCREMENT', 'DECREMENT',
-             'STRING', 'COMMA','FORMAT', 'ADDSUB_HELPER', 'BIGGER', 'SMALLER', 'EQUAL', 'DIFFER', 'IF'
+             'STRING', 'COMMA','FORMAT', 'ADDSUB_HELPER',
+             'BIGGER', 'SMALLER', 'EQUAL', 'DIFFER',
+             'IF', 'ADD_BLOCK_STATEMENT'
              ],
             precedence=[
                 ('left', ['SUM', 'SUB']),
@@ -44,12 +46,18 @@ class Parser():
         @self.pg.production('assignment_statement : VARIABLE ASSIGN expression')
         def assignment_statement(p):
             return Assignment(Identifier(p[0].value),p[2])
+        
         ###
         #IF STATEMENT
         ###
         @self.pg.production('if_statement : IF expression COMMA statement')
         def if_statement(p):
-            return IfStatement(p[1], Statement(p[3]))
+            return IfStatement(p[1], Statements(p[3],[]))
+        
+        @self.pg.production('if_statement : IF expression COMMA statement ADD_BLOCK_STATEMENT statement')
+        def if_statement(p):
+            return IfStatement(p[1], Statements(p[3],[]))
+        
         
         
         

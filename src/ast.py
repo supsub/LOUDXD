@@ -1,3 +1,5 @@
+from rply.token import BaseBox
+
 from src.exceptions import *
 import more_itertools
 

@@ -13,4 +13,4 @@ Wypisz na ekranie b jest wieksze od b.
 Wypisz na ekranie b jest mniejsze od b.
 Wypisz na ekranie b równa się b.
 Wypisz na ekranie b jest różne od b.
-Jeżeli b jest mniejsze od b, Wypisz na ekranie "1statement if".
+Jeżeli b jest mniejsze od b, wykonaj Wypisz na ekranie "1statement if".

@@ -5,7 +5,7 @@ from src.parser import Parser
 def test_test():
     source = """a jest równe 2.
                 Zwiększ a o 5.
-                Wypisz na ekranie a.
+                Wypisz na ekranie a+5.
                 b jest równe 4+a-(2-a).
                 Zmniejsz b o b+1.
                 c jest równe "jestem sobie zmienna c".
@@ -18,7 +18,7 @@ def test_test():
                 Wypisz na ekranie b jest mniejsze od b.
                 Wypisz na ekranie b równa się b.
                 Wypisz na ekranie b jest różne od b.
-                Jeżeli b jest mniejsze od b, wykonaj Wypisz na ekranie "b<b".
+                Jeżeli b-5 jest mniejsze od b, wykonaj Wypisz na ekranie "b<b".
                 Jeżeli a jest mniejsze od b, wykonaj Wypisz na ekranie "a<b".
                 Jeżeli b jest mniejsze od a, wykonaj Wypisz na ekranie "b<a".
                 """

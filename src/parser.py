@@ -10,7 +10,7 @@ class Parser():
              'DOT', 'SUM', 'SUB', 'VARIABLE', 'ASSIGN', 'INCREMENT', 'DECREMENT',
              'STRING', 'COMMA', 'FORMAT', 'ADDSUB_HELPER',
              'BIGGER', 'SMALLER', 'EQUAL', 'DIFFER',
-             'IF', 'START_BLOCK'
+             'IF', 'ELSE', 'START_BLOCK', 'END_BLOCK', 'SEPARATOR'
              ],
             precedence=[
                 ('left', ['SUM', 'SUB', 'BIGGER', 'SMALLER', 'EQUAL', 'DIFFER']),
@@ -19,13 +19,21 @@ class Parser():
 
     def parse(self):
 
+        @self.pg.production('statements : ')
+        def statements_end(p):
+            return Statements(None, None)
+
         @self.pg.production('statements : statement DOT statements')
         def statements(p):
             return Statements(p[0], p[2])
 
-        @self.pg.production('statements : statement DOT')
-        def statements_end(p):
-            return Statement(p[0])
+        @self.pg.production('block_statements : statement SEPARATOR block_statements')
+        def block_statements(p):
+            return Statements(p[0], p[2])
+
+        @self.pg.production('block_statements : statement')
+        def block_statements_end(p):
+            return Statements(p[0], None)
 
         @self.pg.production('statement : print_statement')
         @self.pg.production('statement : assignment_statement')
@@ -51,13 +59,15 @@ class Parser():
         ###
         # IF STATEMENT
         ###
-        @self.pg.production('if_statement : IF expression COMMA START_BLOCK statement')
-        def if_statement(p):
-            return IfStatement(p[1], Statement(p[4]))
 
-        # @self.pg.production('if_statement : IF expression COMMA statement ADD_BLOCK_STATEMENT statement')
-        # def if_statement(p):
-        #     return IfStatement(p[1], Statements(p[3],[]))
+        @self.pg.production('if_statement : IF expression START_BLOCK block_statements DOT END_BLOCK')
+        def if_statement(p):
+            return IfStatement(p[1], Statements(None, p[3]), None)
+
+        @self.pg.production('if_statement : IF expression START_BLOCK block_statements DOT ' +
+                            'ELSE  block_statements DOT END_BLOCK')
+        def if_statement(p):
+            return IfStatement(p[1], Statements(None, p[3]), Statements(None, p[6]))
 
         # INCREMENT
         @self.pg.production('increment_statement : INCREMENT VARIABLE ADDSUB_HELPER expression')

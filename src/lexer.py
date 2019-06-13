@@ -7,11 +7,22 @@ class Lexer():
 
     def _add_tokens(self):
         # Print
-        self.lexer.add('PRINT', r'Wypisz na ekranie')
+        self.lexer.add('PRINT', r'[Ww]ypisz na ekranie')
         self.lexer.add("FORMAT", r'\w puste miejsce wpisz ')
+        self.lexer.add("SEPARATOR", r'oraz')
         # Parenthesis
         self.lexer.add('OPEN_PAREN', r'\(')
         self.lexer.add('CLOSE_PAREN', r'\)')
+        ###
+        #if
+        ###
+        self.lexer.add('IF', r'[Jj]eżeli')
+        self.lexer.add('ELSE', r'W przeciwnym razie')
+        self.lexer.add('START_BLOCK', r'to')
+        self.lexer.add('END_BLOCK', r'Tyle')
+        ###
+        #for
+        ###
         # Semi Colon
         self.lexer.add('DOT', r'\.')
         # Operators +,-
@@ -37,23 +48,18 @@ class Lexer():
         self.lexer.add('EQUAL', r'równa się')
         #!= differ
         self.lexer.add('DIFFER', r'jest różne od')
-        ###
-        #if
-        ###
-        
-        ###
-        #for
-        ###
-            
-        #variable name, ex. response_time or latencySegID  
+
+        #variable name, ex. response_time or latencySegID
         self.lexer.add('VARIABLE', r'(_|[a-zA-Z])(_|[a-zA-Z]|[0-9])*')
 
         self.lexer.add("STRING", r'\"[^\"]*\"')
 
         self.lexer.add("COMMA", r'\,')
 
+
+
         # Ignore spaces
-        self.lexer.ignore('\s+')
+        self.lexer.ignore('\s')
 
     def get_lexer(self):
         self._add_tokens()
